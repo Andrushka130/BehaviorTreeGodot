@@ -1,11 +1,7 @@
 extends BTNode
 
+class_name CompositeNode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	assert(get_child_count() > 1, "A composite node should contain at least 2 children")
