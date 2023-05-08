@@ -1,6 +1,6 @@
 extends CompositeNode
 
-class_name SelectorComposite
+class_name Selector
 
 func tick(actor, blackboard):
 	var result

@@ -1,6 +1,6 @@
 extends CompositeNode
 
-class_name SequenceComposite
+class_name Sequence
 
 func tick(actor, blackboard):
 	var result

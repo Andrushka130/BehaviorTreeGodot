@@ -1,6 +1,6 @@
 extends CompositeNode
 
-class_name ParallelComposite
+class_name Parallel
 
 @export_enum("Sequence policy", "Selector policy") var policy = "Sequence policy"
 
