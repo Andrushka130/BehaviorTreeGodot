@@ -6,6 +6,6 @@ class_name RepeaterDecorater
 
 func tick(actor, blackboard:Dictionary) -> BTNodeState:
 	for i in iterations:
-		get_child(0).tick()
+		get_child(0).tick(actor, blackboard)
 		
 	return BTNodeState.SUCCESS
