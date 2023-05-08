@@ -8,7 +8,7 @@ func tick(actor, blackboard):
 	for child in get_children():
 		result = child.tick(actor, blackboard)
 		
-		if result != BTNodeState.FAILURE:
+		if result != BTNodeState.SUCCESS:
 			return result
 	
-	return BTNodeState.FAILURE
+	return BTNodeState.SUCCESS
