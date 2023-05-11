@@ -1,18 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://cy0jb4ia6csgm"]
+[gd_scene load_steps=15 format=3 uid="uid://cbav7ek1gtfl3"]
 
 [ext_resource type="Script" path="res://BT_Example/npc.gd" id="1_1aj0b"]
 [ext_resource type="Texture2D" uid="uid://c5ay71glm06ae" path="res://icon.svg" id="2_3tgvk"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/behaviour_tree.gd" id="3_w8y4d"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/composites/bt_selector.gd" id="4_et567"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/composites/bt_sequence.gd" id="5_f3r7f"]
+[ext_resource type="Script" path="res://addons/bahviourTree/src/behaviour_tree.gd" id="3_sgfqu"]
+[ext_resource type="Script" path="res://addons/bahviourTree/src/nodes/composites/bt_selector.gd" id="4_if702"]
+[ext_resource type="Script" path="res://addons/bahviourTree/src/nodes/composites/bt_sequence.gd" id="5_qhn2p"]
 [ext_resource type="Script" path="res://BT_Example/select_closest_target.gd" id="6_1sdha"]
 [ext_resource type="Script" path="res://BT_Example/is_target_nearby.gd" id="7_qj5qy"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/composites/bt_parallel.gd" id="8_uaflb"]
+[ext_resource type="Script" path="res://addons/bahviourTree/src/nodes/composites/bt_parallel.gd" id="8_coygl"]
 [ext_resource type="Script" path="res://BT_Example/MoveToTargetLocation.gd" id="9_5dm7v"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/decorater/bt_always.gd" id="10_bbt0y"]
+[ext_resource type="Script" path="res://addons/bahviourTree/src/nodes/decorater/bt_always.gd" id="10_hwwfm"]
 [ext_resource type="Script" path="res://BT_Example/Shout.gd" id="10_p2fhq"]
 [ext_resource type="Script" path="res://BT_Example/Patrol.gd" id="12_3wdbk"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/leaves/action_node.gd" id="13_6kmc1"]
+[ext_resource type="Script" path="res://addons/bahviourTree/src/nodes/leaves/action_node.gd" id="13_hatyp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pkc4"]
 size = Vector2(120, 118)
@@ -35,13 +35,13 @@ process_callback = 0
 wait_time = 2.0
 
 [node name="BehaviorTree" type="Node" parent="."]
-script = ExtResource("3_w8y4d")
+script = ExtResource("3_sgfqu")
 
 [node name="Selector" type="Node" parent="BehaviorTree"]
-script = ExtResource("4_et567")
+script = ExtResource("4_if702")
 
 [node name="GoToTargetSequence" type="Node" parent="BehaviorTree/Selector"]
-script = ExtResource("5_f3r7f")
+script = ExtResource("5_qhn2p")
 
 [node name="LoadClosestTargetLocation" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence"]
 script = ExtResource("6_1sdha")
@@ -49,24 +49,24 @@ script = ExtResource("6_1sdha")
 [node name="isTargetInRange" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence"]
 script = ExtResource("7_qj5qy")
 
-[node name="MoveAndShout" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence"]
-script = ExtResource("8_uaflb")
+[node name="moveAndShout" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence"]
+script = ExtResource("8_coygl")
 policy = "Selector policy"
 
-[node name="MoveToTargetLocation" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/MoveAndShout"]
+[node name="MoveToTargetLocation" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/moveAndShout"]
 script = ExtResource("9_5dm7v")
 
-[node name="AlwaysFail" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/MoveAndShout"]
-script = ExtResource("10_bbt0y")
+[node name="AlwaysFail" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/moveAndShout"]
+script = ExtResource("10_hwwfm")
 
-[node name="Shout" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/MoveAndShout/AlwaysFail"]
+[node name="Shout" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/moveAndShout/AlwaysFail"]
 script = ExtResource("10_p2fhq")
 
 [node name="PatrolSequence" type="Node" parent="BehaviorTree/Selector"]
-script = ExtResource("5_f3r7f")
+script = ExtResource("5_qhn2p")
 
 [node name="LoadPatrolPoint" type="Node" parent="BehaviorTree/Selector/PatrolSequence"]
 script = ExtResource("12_3wdbk")
 
 [node name="ActionNode" type="Node" parent="BehaviorTree/Selector/PatrolSequence"]
-script = ExtResource("13_6kmc1")
+script = ExtResource("13_hatyp")
