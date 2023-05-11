@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqn20eym0t3my"]
+
+[ext_resource type="PackedScene" uid="uid://dujkly5nq8sej" path="res://BT_Example/character.tscn" id="1_l2leo"]
+[ext_resource type="Script" path="res://BT_Example/main.gd" id="1_r14wx"]
+[ext_resource type="PackedScene" uid="uid://duvcksq68nq4x" path="res://BT_Example/target.tscn" id="2_p5wo7"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_r14wx")
+target_scene = ExtResource("2_p5wo7")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_l2leo")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

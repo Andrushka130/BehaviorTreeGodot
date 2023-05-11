@@ -2,6 +2,8 @@ extends CompositeNode
 
 class_name Parallel
 
+#Sequence policy -> parallel fails as soon as one child fails
+#Selector policy -> parallel succeeds as soon as one child succeds
 @export_enum("Sequence policy", "Selector policy") var policy = "Sequence policy"
 
 func tick(actor, blackboard):
