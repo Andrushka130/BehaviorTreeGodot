@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnpim6cgm24sq"]
+
+[ext_resource type="Texture2D" uid="uid://c5ay71glm06ae" path="res://icon.svg" id="1_x1co1"]
+
+[node name="PatrolPoint" type="Marker2D" groups=["patrolPoint"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_x1co1")

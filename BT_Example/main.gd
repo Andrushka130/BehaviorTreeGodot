@@ -21,4 +21,4 @@ func spawn_target():
 	var target = target_scene.instantiate()
 	var area = get_viewport_rect()
 	target.position = Vector2(randf_range(area.position.x, area.end.x), randf_range(area.position.y, area.end.y))
-	
+	add_child(target)

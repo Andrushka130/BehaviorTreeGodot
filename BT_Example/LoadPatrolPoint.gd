@@ -1,7 +1,7 @@
 extends ActionNode
 
 var patrol_index: int = 0
-@export var patrol_point_key: String = "patrol_point"
+@export var patrol_point_key: String = "patrol"
 
 func tick(actor, blackboard:Dictionary) -> BTNodeState:
 	
@@ -9,7 +9,7 @@ func tick(actor, blackboard:Dictionary) -> BTNodeState:
 	if points.size() == 0:
 		return BTNodeState.FAILURE	
 	
-	blackboard[patrol_point_key] = points[patrol_index]
 	patrol_index = (patrol_index+1) % points.size()
+	blackboard[patrol_point_key] = points[patrol_index].global_position
 	
 	return BTNodeState.SUCCESS

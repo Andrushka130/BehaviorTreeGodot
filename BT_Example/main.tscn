@@ -1,19 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqn20eym0t3my"]
+[gd_scene load_steps=5 format=3 uid="uid://cjnsotdhi7iqb"]
 
-[ext_resource type="PackedScene" uid="uid://cbav7ek1gtfl3" path="res://BT_Example/character.tscn" id="1_l2leo"]
+[ext_resource type="PackedScene" uid="uid://c3uhanyhb77dy" path="res://BT_Example/npc.tscn" id="1_l2leo"]
 [ext_resource type="Script" path="res://BT_Example/main.gd" id="1_r14wx"]
 [ext_resource type="PackedScene" uid="uid://duvcksq68nq4x" path="res://BT_Example/target.tscn" id="2_p5wo7"]
+[ext_resource type="PackedScene" uid="uid://bnpim6cgm24sq" path="res://BT_Example/patrol_point.tscn" id="4_kc5sh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_r14wx")
 target_scene = ExtResource("2_p5wo7")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_l2leo")]
+[node name="npc" parent="." instance=ExtResource("1_l2leo")]
+position = Vector2(586, 332)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="PatrolPoint" parent="." instance=ExtResource("4_kc5sh")]
+position = Vector2(585, 166)
 
-[editable path="CharacterBody2D"]
+[node name="PatrolPoint2" parent="." instance=ExtResource("4_kc5sh")]
+position = Vector2(342, 464)
+
+[node name="PatrolPoint3" parent="." instance=ExtResource("4_kc5sh")]
+position = Vector2(865, 472)
+
+[node name="Target" parent="." instance=ExtResource("2_p5wo7")]
+position = Vector2(530, 323)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
