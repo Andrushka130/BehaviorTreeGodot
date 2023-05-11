@@ -1,3 +1,4 @@
+@icon("res://addons/icons/Control Nodes/Sequence.png")
 extends CompositeNode
 
 class_name Sequence

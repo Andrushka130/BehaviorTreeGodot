@@ -1,3 +1,4 @@
+@icon("res://addons/icons/Leaf/btleaf.svg")
 extends LeafNode
 
 class_name ActionNode

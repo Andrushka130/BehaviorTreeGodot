@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/icons/BT.png")
 extends Node
 
 class_name BehaviorTree

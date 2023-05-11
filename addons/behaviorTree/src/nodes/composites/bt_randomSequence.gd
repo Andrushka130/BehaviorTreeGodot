@@ -1,3 +1,4 @@
+@icon("res://addons/icons/Control Nodes/RandomSequence.png")
 extends CompositeNode
 
 class_name RandomSequence

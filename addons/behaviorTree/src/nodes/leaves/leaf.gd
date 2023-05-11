@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/icons/Leaf/btleaf.svg")
 extends BTNode
 
 class_name LeafNode

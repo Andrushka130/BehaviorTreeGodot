@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/icons/btcomposite.svg")
 extends BTNode
 
 class_name CompositeNode

@@ -1,3 +1,4 @@
+@icon("res://addons/icons/Decorator/Always.png")
 extends BTDecorator
 
 class_name AlwaysDecorator

@@ -1,3 +1,4 @@
+@icon("res://addons/icons/Control Nodes/Parallel.png")
 extends CompositeNode
 
 class_name Parallel

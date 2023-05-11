@@ -1,3 +1,4 @@
+@icon("res://addons/icons/Control Nodes/Random.Selector.png")
 extends CompositeNode
 
 class_name RandomSelector
