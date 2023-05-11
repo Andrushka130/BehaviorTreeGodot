@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjnsotdhi7iqb"]
 
-[ext_resource type="PackedScene" uid="uid://c3uhanyhb77dy" path="res://BT_Example/npc.tscn" id="1_l2leo"]
+[ext_resource type="PackedScene" uid="uid://c1puxdgkavcj4" path="res://BT_Example/npc.tscn" id="1_l2leo"]
 [ext_resource type="Script" path="res://BT_Example/main.gd" id="1_r14wx"]
 [ext_resource type="PackedScene" uid="uid://duvcksq68nq4x" path="res://BT_Example/target.tscn" id="2_p5wo7"]
 [ext_resource type="PackedScene" uid="uid://bnpim6cgm24sq" path="res://BT_Example/patrol_point.tscn" id="4_kc5sh"]
@@ -13,7 +13,6 @@ target_scene = ExtResource("2_p5wo7")
 position = Vector2(586, 332)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
 autostart = true
 
 [node name="PatrolPoint" parent="." instance=ExtResource("4_kc5sh")]

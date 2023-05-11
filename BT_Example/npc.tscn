@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1puxdgkavcj4"]
+[gd_scene load_steps=15 format=3 uid="uid://c1puxdgkavcj4"]
 
 [ext_resource type="Script" path="res://BT_Example/npc.gd" id="1_1aj0b"]
 [ext_resource type="Texture2D" uid="uid://c5ay71glm06ae" path="res://icon.svg" id="2_3tgvk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://BT_Example/MoveToLocation.gd" id="10_ej410"]
 [ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/decorater/bt_always.gd" id="10_kdlnd"]
 [ext_resource type="Script" path="res://BT_Example/Shout.gd" id="10_p2fhq"]
+[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/decorater/bt_invert.gd" id="12_g573s"]
 [ext_resource type="Script" path="res://BT_Example/LoadPatrolPoint.gd" id="13_6bpyl"]
 [ext_resource type="Script" path="res://BT_Example/IsTargetReached.gd" id="14_5bcgt"]
 
@@ -48,8 +49,8 @@ script = ExtResource("6_t3mvm")
 
 [node name="IsTargetInRange" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence"]
 script = ExtResource("14_5bcgt")
-target_key = null
-margin = null
+target_key = "target"
+margin = 250.0
 
 [node name="MoveAndShout" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence"]
 script = ExtResource("8_hm56y")
@@ -58,7 +59,6 @@ policy = "Selector policy"
 [node name="IsTargetReached" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/MoveAndShout"]
 script = ExtResource("14_5bcgt")
 target_key = "target"
-margin = null
 
 [node name="MoveToLocation" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/MoveAndShout"]
 script = ExtResource("10_ej410")
@@ -73,12 +73,17 @@ script = ExtResource("10_p2fhq")
 [node name="PatrolSequence" type="Node" parent="BehaviorTree/Selector"]
 script = ExtResource("5_2bmts")
 
-[node name="IsTargetReached" type="Node" parent="BehaviorTree/Selector/PatrolSequence"]
+[node name="Selector" type="Node" parent="BehaviorTree/Selector/PatrolSequence"]
+script = ExtResource("4_qmw6m")
+
+[node name="InvertDecorator" type="Node" parent="BehaviorTree/Selector/PatrolSequence/Selector"]
+script = ExtResource("12_g573s")
+
+[node name="IsTargetReached" type="Node" parent="BehaviorTree/Selector/PatrolSequence/Selector/InvertDecorator"]
 script = ExtResource("14_5bcgt")
 target_key = "patrol"
-margin = null
 
-[node name="LoadPatrolPoint" type="Node" parent="BehaviorTree/Selector/PatrolSequence"]
+[node name="LoadPatrolPoint" type="Node" parent="BehaviorTree/Selector/PatrolSequence/Selector"]
 script = ExtResource("13_6bpyl")
 
 [node name="MoveToLocation" type="Node" parent="BehaviorTree/Selector/PatrolSequence"]
