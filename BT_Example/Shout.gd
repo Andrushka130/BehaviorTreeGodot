@@ -6,7 +6,7 @@ func tick(actor, blackboard:Dictionary) -> BTNodeState:
 	if actor.has_method("shout") and timer:
 		if timer.is_stopped():
 			actor.shout()
-			timer.start()
+			timer.start(2)
 			return BTNodeState.SUCCESS
 		else:
 			return BTNodeState.RUNNING

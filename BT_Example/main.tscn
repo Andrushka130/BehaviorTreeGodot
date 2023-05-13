@@ -24,7 +24,4 @@ position = Vector2(342, 464)
 [node name="PatrolPoint3" parent="." instance=ExtResource("4_kc5sh")]
 position = Vector2(865, 472)
 
-[node name="Target" parent="." instance=ExtResource("2_p5wo7")]
-position = Vector2(530, 323)
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

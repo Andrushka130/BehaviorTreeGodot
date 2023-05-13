@@ -34,6 +34,7 @@ shape = SubResource("RectangleShape2D_5pkc4")
 [node name="ShoutTimer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 2.0
+one_shot = true
 
 [node name="BehaviorTree" type="Node" parent="."]
 script = ExtResource("3_fafi2")
