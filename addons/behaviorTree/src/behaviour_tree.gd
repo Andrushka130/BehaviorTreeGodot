@@ -7,7 +7,7 @@ class_name BehaviorTree
 var blackboard :Dictionary
 var enabled :bool = true
 
-@onready var root :BTNode = get_child(0) as BTNode
+@onready var root :BT_Node = get_child(0) as BT_Node
 
 func _ready() -> void:
 	assert(get_child_count() == 1, "A Behaviour Tree should have one and just one root node")
@@ -32,6 +32,6 @@ func disable() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	if get_child_count() != 1:
 		return ["A Behaviour Tree should have one and just one root node"]
-	elif not (get_child(0) is BTNode):
-		return ["In a Behaviour Tree, only BTNodes are allowed"]
+	elif not (get_child(0) is BT_Node):
+		return ["In a Behaviour Tree, only BT_Nodes are allowed"]
 	return []

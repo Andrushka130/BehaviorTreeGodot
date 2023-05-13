@@ -1,10 +1,10 @@
 @tool
 @icon("res://addons/icons/Control Nodes/Selector.png")
-extends CompositeNode
+extends BT_Composite
 
-class_name Selector
+class_name BT_Selector
 
-func tick(actor, blackboard) -> BTNodeState:
+func tick(actor, blackboard) -> BT_NodeState:
 	if Engine.is_editor_hint():
 		return -1
 	
@@ -13,7 +13,7 @@ func tick(actor, blackboard) -> BTNodeState:
 	for child in get_children():
 		result = child.tick(actor, blackboard)
 		
-		if result != BTNodeState.FAILURE:
+		if result != BT_NodeState.FAILURE:
 			return result
 	
-	return BTNodeState.FAILURE
+	return BT_NodeState.FAILURE

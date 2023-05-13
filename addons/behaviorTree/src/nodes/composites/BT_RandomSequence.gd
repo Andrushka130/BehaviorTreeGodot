@@ -1,10 +1,10 @@
 @tool
 @icon("res://addons/icons/Control Nodes/RandomSequence.png")
-extends CompositeNode
+extends BT_Composite
 
-class_name RandomSequence
+class_name BT_RandomSequence
 
-func tick(actor, blackboard:Dictionary) -> BTNodeState:
+func tick(actor, blackboard:Dictionary) -> BT_NodeState:
 	if Engine.is_editor_hint():
 		return -1
 		
@@ -16,7 +16,7 @@ func tick(actor, blackboard:Dictionary) -> BTNodeState:
 	for child in child_array:
 		result = child.tick(actor, blackboard)
 		
-		if result != BTNodeState.SUCCESS:
+		if result != BT_NodeState.SUCCESS:
 			return result
 	
-	return BTNodeState.SUCCESS
+	return BT_NodeState.SUCCESS

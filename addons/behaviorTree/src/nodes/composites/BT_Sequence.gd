@@ -1,10 +1,10 @@
 @tool
 @icon("res://addons/icons/Control Nodes/Sequence.png")
-extends CompositeNode
+extends BT_Composite
 
-class_name Sequence
+class_name BT_Sequence
 
-func tick(actor, blackboard) -> BTNodeState:
+func tick(actor, blackboard) -> BT_NodeState:
 	if Engine.is_editor_hint():
 		return -1
 	
@@ -13,7 +13,7 @@ func tick(actor, blackboard) -> BTNodeState:
 	for child in get_children():
 		result = child.tick(actor, blackboard)
 		
-		if result != BTNodeState.SUCCESS:
+		if result != BT_NodeState.SUCCESS:
 			return result
 	
-	return BTNodeState.SUCCESS
+	return BT_NodeState.SUCCESS

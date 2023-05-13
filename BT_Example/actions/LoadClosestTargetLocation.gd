@@ -1,12 +1,12 @@
-extends ActionNode
+extends BT_Action
 
 @export var target_key: String = "target"
 
-func tick(actor, blackboard) -> BTNodeState:
+func tick(actor, blackboard) -> BT_NodeState:
 	var targets = get_tree().get_nodes_in_group("Target")
 	if targets.size() == 0:
 		blackboard[target_key] = null
-		return BTNodeState.FAILURE
+		return BT_NodeState.FAILURE
 	
 	var actor_pos: Vector2 = actor.position
 	var min := actor_pos.distance_to(targets[0].position)
@@ -20,4 +20,4 @@ func tick(actor, blackboard) -> BTNodeState:
 			next_target = target
 			
 	blackboard[target_key] = next_target.position
-	return BTNodeState.SUCCESS
+	return BT_NodeState.SUCCESS

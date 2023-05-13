@@ -1,18 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1puxdgkavcj4"]
+[gd_scene load_steps=15 format=3 uid="uid://bpswui34h4yus"]
 
 [ext_resource type="Script" path="res://BT_Example/npc.gd" id="1_1aj0b"]
 [ext_resource type="Texture2D" uid="uid://c5ay71glm06ae" path="res://icon.svg" id="2_3tgvk"]
 [ext_resource type="Script" path="res://addons/behaviorTree/src/behaviour_tree.gd" id="3_fafi2"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/composites/bt_selector.gd" id="4_qmw6m"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/composites/bt_sequence.gd" id="5_2bmts"]
-[ext_resource type="Script" path="res://BT_Example/LoadClosestTargetLocation.gd" id="6_t3mvm"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/composites/bt_parallel.gd" id="8_hm56y"]
-[ext_resource type="Script" path="res://BT_Example/MoveToLocation.gd" id="10_ej410"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/decorater/bt_always.gd" id="10_kdlnd"]
-[ext_resource type="Script" path="res://BT_Example/Shout.gd" id="10_p2fhq"]
-[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/decorater/bt_invert.gd" id="12_g573s"]
-[ext_resource type="Script" path="res://BT_Example/LoadPatrolPoint.gd" id="13_6bpyl"]
-[ext_resource type="Script" path="res://BT_Example/IsTargetReached.gd" id="14_5bcgt"]
+[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/composites/BT_Selector.gd" id="4_raexr"]
+[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/composites/BT_Sequence.gd" id="5_ioa5v"]
+[ext_resource type="Script" path="res://BT_Example/actions/LoadClosestTargetLocation.gd" id="6_xd56x"]
+[ext_resource type="Script" path="res://BT_Example/conditions/IsTargetReached.gd" id="7_ars60"]
+[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/composites/BT_Parallel.gd" id="8_sk3de"]
+[ext_resource type="Script" path="res://BT_Example/actions/MoveToLocation.gd" id="9_2hqbj"]
+[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/decorater/BT_Always.gd" id="10_oj686"]
+[ext_resource type="Script" path="res://BT_Example/actions/Shout.gd" id="11_8actk"]
+[ext_resource type="Script" path="res://addons/behaviorTree/src/nodes/decorater/BT_Inverter.gd" id="12_cr7hj"]
+[ext_resource type="Script" path="res://BT_Example/actions/LoadPatrolPoint.gd" id="13_rkf1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pkc4"]
 size = Vector2(120, 118)
@@ -40,53 +40,53 @@ one_shot = true
 script = ExtResource("3_fafi2")
 
 [node name="Selector" type="Node" parent="BehaviorTree"]
-script = ExtResource("4_qmw6m")
+script = ExtResource("4_raexr")
 
 [node name="GoToTargetSequence" type="Node" parent="BehaviorTree/Selector"]
-script = ExtResource("5_2bmts")
+script = ExtResource("5_ioa5v")
 
 [node name="LoadClosestTargetLocation" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence"]
-script = ExtResource("6_t3mvm")
+script = ExtResource("6_xd56x")
 
 [node name="IsTargetInRange" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence"]
-script = ExtResource("14_5bcgt")
+script = ExtResource("7_ars60")
 target_key = "target"
 margin = 250.0
 
 [node name="MoveAndShout" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence"]
-script = ExtResource("8_hm56y")
+script = ExtResource("8_sk3de")
 policy = "Selector policy"
 
 [node name="IsTargetReached" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/MoveAndShout"]
-script = ExtResource("14_5bcgt")
+script = ExtResource("7_ars60")
 target_key = "target"
 
 [node name="MoveToLocation" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/MoveAndShout"]
-script = ExtResource("10_ej410")
+script = ExtResource("9_2hqbj")
 target_key = "target"
 
 [node name="AlwaysFail" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/MoveAndShout"]
-script = ExtResource("10_kdlnd")
+script = ExtResource("10_oj686")
 
 [node name="Shout" type="Node" parent="BehaviorTree/Selector/GoToTargetSequence/MoveAndShout/AlwaysFail"]
-script = ExtResource("10_p2fhq")
+script = ExtResource("11_8actk")
 
 [node name="PatrolSequence" type="Node" parent="BehaviorTree/Selector"]
-script = ExtResource("5_2bmts")
+script = ExtResource("5_ioa5v")
 
 [node name="Selector" type="Node" parent="BehaviorTree/Selector/PatrolSequence"]
-script = ExtResource("4_qmw6m")
+script = ExtResource("4_raexr")
 
 [node name="InvertDecorator" type="Node" parent="BehaviorTree/Selector/PatrolSequence/Selector"]
-script = ExtResource("12_g573s")
+script = ExtResource("12_cr7hj")
 
 [node name="IsTargetReached" type="Node" parent="BehaviorTree/Selector/PatrolSequence/Selector/InvertDecorator"]
-script = ExtResource("14_5bcgt")
+script = ExtResource("7_ars60")
 target_key = "patrol"
 
 [node name="LoadPatrolPoint" type="Node" parent="BehaviorTree/Selector/PatrolSequence/Selector"]
-script = ExtResource("13_6bpyl")
+script = ExtResource("13_rkf1i")
 
 [node name="MoveToLocation" type="Node" parent="BehaviorTree/Selector/PatrolSequence"]
-script = ExtResource("10_ej410")
+script = ExtResource("9_2hqbj")
 target_key = "patrol"
