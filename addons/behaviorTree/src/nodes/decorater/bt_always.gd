@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/icons/Decorator/Always.png")
 extends BTDecorator
 
@@ -6,7 +7,10 @@ class_name AlwaysDecorator
 enum AlwaysStatus {Fail, Succeed}
 @export var alwaysStatus: AlwaysStatus
 
-func tick(actor, blackboard):
+func tick(actor, blackboard) -> BTNodeState:
+	if Engine.is_editor_hint():
+		return -1
+	
 	var result = get_child(0).tick(actor, blackboard)
 	if result == BTNodeState.RUNNING:
 		return result	

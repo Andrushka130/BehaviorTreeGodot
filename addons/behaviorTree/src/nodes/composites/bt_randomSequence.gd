@@ -1,9 +1,13 @@
+@tool
 @icon("res://addons/icons/Control Nodes/RandomSequence.png")
 extends CompositeNode
 
 class_name RandomSequence
 
 func tick(actor, blackboard:Dictionary) -> BTNodeState:
+	if Engine.is_editor_hint():
+		return -1
+		
 	var child_array := get_children()
 	randomize()
 	child_array.shuffle()

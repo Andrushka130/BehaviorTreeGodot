@@ -1,3 +1,4 @@
+@tool
 extends BTDecorator
 
 class_name RepeatUntil
@@ -6,6 +7,9 @@ class_name RepeatUntil
 @onready var expected = bool(until)
 
 func tick(actor, blackboard:Dictionary) -> BTNodeState:
+	if Engine.is_editor_hint():
+		return -1
+	
 	var result = not expected
 	var child = get_child(0) as BTNode
 	

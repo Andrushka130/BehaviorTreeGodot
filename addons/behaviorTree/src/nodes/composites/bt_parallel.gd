@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/icons/Control Nodes/Parallel.png")
 extends CompositeNode
 
@@ -10,7 +11,10 @@ class_name Parallel
 #if all its children fail, then the parallel task fails
 @export_enum("Sequence policy", "Selector policy") var policy = "Sequence policy"
 
-func tick(actor, blackboard):
+func tick(actor, blackboard) -> BTNodeState:
+	if Engine.is_editor_hint():
+		return -1
+	
 	var results: Array
 	
 	for child in get_children():

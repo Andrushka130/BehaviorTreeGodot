@@ -1,9 +1,13 @@
+@tool
 @icon("res://addons/icons/Control Nodes/Selector.png")
 extends CompositeNode
 
 class_name Selector
 
-func tick(actor, blackboard):
+func tick(actor, blackboard) -> BTNodeState:
+	if Engine.is_editor_hint():
+		return -1
+	
 	var result
 	
 	for child in get_children():
@@ -13,5 +17,3 @@ func tick(actor, blackboard):
 			return result
 	
 	return BTNodeState.FAILURE
-	
-	
