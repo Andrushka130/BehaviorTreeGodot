@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bpswui34h4yus"]
+[gd_scene load_steps=16 format=3 uid="uid://bpswui34h4yus"]
 
 [ext_resource type="Script" path="res://BT_Example/npc.gd" id="1_1aj0b"]
 [ext_resource type="Texture2D" uid="uid://c5ay71glm06ae" path="res://icon.svg" id="2_3tgvk"]
@@ -15,18 +15,21 @@
 [ext_resource type="Script" path="res://BT_Example/actions/LoadPatrolPoint.gd" id="13_rkf1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pkc4"]
-size = Vector2(120, 118)
+size = Vector2(128, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_re5cq"]
+radius = 250.0
 
 [node name="npc" type="CharacterBody2D"]
-scale = Vector2(0.25, 0.25)
 motion_mode = 1
 script = ExtResource("1_1aj0b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_3tgvk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_5pkc4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -35,6 +38,10 @@ shape = SubResource("RectangleShape2D_5pkc4")
 process_callback = 0
 wait_time = 2.0
 one_shot = true
+
+[node name="ViewRadius" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_re5cq")
+disabled = true
 
 [node name="BehaviorTree" type="Node" parent="."]
 script = ExtResource("3_fafi2")
